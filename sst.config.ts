@@ -1,11 +1,11 @@
-import { SSTConfig } from "sst";
-import { MainStack } from "./stacks/MainStack";
+import { SSTConfig } from 'sst';
+import { MainStack } from './stacks/MainStack';
 
 export default {
   config(_input) {
     return {
-      name: "kanban-app",
-      region: "eu-west-1",
+      name: 'kanban-app',
+      region: 'eu-west-1',
     };
   },
   stacks(app) {
