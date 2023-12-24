@@ -7,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function Page() {
@@ -24,7 +25,17 @@ export default function Page() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>View task dialog</DialogTitle>
-          <DialogDescription>Description</DialogDescription>
+          <DialogDescription>
+            <div>
+              <Link href="/task/123">View</Link>
+            </div>
+            <div>
+              <Link href="/board/add">Add</Link>
+            </div>
+            <div>
+              <Link href="/board/delete">Delete</Link>
+            </div>
+          </DialogDescription>
         </DialogHeader>
       </DialogContent>
     </Dialog>
