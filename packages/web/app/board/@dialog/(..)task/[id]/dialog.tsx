@@ -15,10 +15,12 @@ import { useRouter } from 'next/navigation';
 export default function TaskDialog() {
   const router = useRouter();
 
-  const { refetch, isLoading, isRefetching, isFetched } = useQuery({
+  const { data, refetch, isRefetching } = useQuery({
     queryKey: ['task'],
     queryFn: () => fetchTaskById('1'),
   });
+
+  console.log('data', data);
 
   const { mutate, isPending } = useMutation({
     mutationKey: ['task'],
@@ -42,12 +44,12 @@ export default function TaskDialog() {
           <DialogTitle>View task dialog</DialogTitle>
           <DialogDescription>Description</DialogDescription>
         </DialogHeader>
-        {(isRefetching || isLoading) && <div>Loading task...</div>}
-
+        {isRefetching && <div>Loading task...</div>}
         {isPending && <div>Updating...</div>}
-
-        {isFetched && <TaskDetails />}
-
+        <div>id: {data?.data.id} </div>
+        <div>name: {data?.data.name} </div>
+        <div>Details</div>
+        <TaskDetails />
         <Button
           disabled={isPending}
           onClick={() => {

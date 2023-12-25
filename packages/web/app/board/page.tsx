@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import Link from '@/components/ui/link';
 
-export default function Page() {
+export default async function Page() {
   return (
     <div>
       <h1>Board page</h1>
