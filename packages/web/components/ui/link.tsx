@@ -1,9 +1,11 @@
-import { LinkProps, default as NextLink } from 'next/link';
+import { LinkProps as NextLinkProps, default as NextLink } from 'next/link';
 
-export default function Link(props: LinkProps & { children: React.ReactNode }) {
+export type LinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & NextLinkProps;
+
+export default function Link(props: LinkProps & { children?: React.ReactNode }) {
   return (
     <NextLink {...props} scroll={props.scroll ?? false}>
-      {props.children}
+      {props?.children}
     </NextLink>
   );
 }

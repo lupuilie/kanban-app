@@ -6,7 +6,9 @@ type BoardLayoutProps = {
 export default async function Layout(props: BoardLayoutProps) {
   return (
     <>
+      <header>Header</header>
       {props.children}
+      <footer>Footer</footer>
       {props.dialog}
     </>
   );

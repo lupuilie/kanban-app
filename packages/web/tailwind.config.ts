@@ -3,7 +3,12 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 
 const config = {
   darkMode: ['class'],
-  content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
   prefix: '',
   theme: {
     container: {
@@ -48,6 +53,14 @@ const config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        'brand-purple': {
+          DEFAULT: 'hsl(var(--brand-purple))',
+          foreground: 'hsl(var(--brand-purple-foreground))',
+          hover: 'hsl(var(--brand-purple-hover))',
+        },
+        'dark-grey': 'hsl(var(--dark-grey))',
+        'light-grey': 'hsl(var(--light-grey))',
+        'very-dark-grey': 'hsl(var(--very-dark-grey))',
       },
       borderRadius: {
         lg: 'var(--radius)',
