@@ -61,6 +61,7 @@ const config = {
         'dark-grey': 'hsl(var(--dark-grey))',
         'light-grey': 'hsl(var(--light-grey))',
         'very-dark-grey': 'hsl(var(--very-dark-grey))',
+        'medium-grey': 'hsl(var(--medium-grey))',
       },
       borderRadius: {
         lg: 'var(--radius)',

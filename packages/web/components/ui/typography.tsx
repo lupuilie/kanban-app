@@ -6,7 +6,7 @@ import { cva } from 'class-variance-authority';
 const typographyVariants = cva('font-medium', {
   variants: {
     variant: {
-      default: 'text-primary',
+      default: '',
     },
     size: {
       'heading-xl': 'text-2xl/[30px] font-bold',

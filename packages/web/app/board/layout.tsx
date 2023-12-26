@@ -1,3 +1,6 @@
+import { Header } from '@/components/layout/header';
+import { Sidebar, SidebarToggle } from '@/components/layout/sidebar';
+
 type BoardLayoutProps = {
   dialog: React.ReactNode;
   children: React.ReactNode;
@@ -6,9 +9,12 @@ type BoardLayoutProps = {
 export default async function Layout(props: BoardLayoutProps) {
   return (
     <>
-      <header>Header</header>
-      {props.children}
-      <footer>Footer</footer>
+      <Header />
+      <main className="flex">
+        <Sidebar />
+        {props.children}
+      </main>
+      <SidebarToggle />
       {props.dialog}
     </>
   );
