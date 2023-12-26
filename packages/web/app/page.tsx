@@ -9,9 +9,6 @@ export default function Home() {
       <Header />
       <main className="flex">
         <Sidebar />
-        <section>
-          <Button className="mr-4">Click me</Button>
-        </section>
       </main>
       <SidebarToggle />
     </>

@@ -10,7 +10,7 @@ export default async function Layout(props: BoardLayoutProps) {
   return (
     <>
       <Header />
-      <main className="flex">
+      <main className="flex relative">
         <Sidebar />
         {props.children}
       </main>

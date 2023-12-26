@@ -17,7 +17,7 @@ export const Sidebar = () => {
   return (
     <aside
       className={cn(
-        'flex h-[calc(100vh-96px)] min-w-[256px] lg:min-w-[300px] border-r border-r-border bg-white dark:bg-dark-grey z-10 flex-col justify-between pb-6 pr-6 transition-transform -translate-x-full',
+        'flex fixed h-[calc(100vh-96px)] min-w-[256px] lg:min-w-[300px] border-r border-r-border bg-white dark:bg-dark-grey z-10 flex-col justify-between pb-6 pr-6 transition-transform -translate-x-full',
         sidebarVisible && 'translate-x-0',
       )}
     >

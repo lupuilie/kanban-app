@@ -36,7 +36,7 @@ export const Header = () => {
       </div>
       <div
         className={cn(
-          'flex items-center w-full h-[96px] justify-between border-b border-b-border px-4 md:px-6',
+          'flex items-center w-full h-[96px] justify-between border-b border-b-border px-4 lg:px-6',
         )}
       >
         <Typography size="heading-xl">Platform launch</Typography>
