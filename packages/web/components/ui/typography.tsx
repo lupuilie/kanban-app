@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import React from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import { cva } from 'class-variance-authority';
+import { VariantProps, cva } from 'class-variance-authority';
 
 const typographyVariants = cva('font-medium', {
   variants: {
@@ -23,28 +23,25 @@ const typographyVariants = cva('font-medium', {
   },
 });
 
-export type TypographyProps = {
-  size: 'heading-xl' | 'heading-l' | 'heading-m' | 'heading-s' | 'body-l' | 'body-m';
-  className?: string;
-  children: React.ReactNode;
-};
+export interface TypographyProps
+  extends React.HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement>,
+    VariantProps<typeof typographyVariants> {}
 
-const Typography = React.forwardRef<
-  HTMLParagraphElement | HTMLHeadingElement | HTMLSpanElement,
-  TypographyProps
->(({ className, size, ...props }, ref) => {
-  const compMap = {
-    'heading-xl': 'h1',
-    'heading-l': 'h2',
-    'heading-m': 'h3',
-    'heading-s': 'h4',
-    'body-l': 'p',
-    'body-m': 'p',
-  };
+const Typography = React.forwardRef<HTMLHeadingElement, TypographyProps>(
+  ({ className, size, ...props }, ref) => {
+    const compMap = {
+      'heading-xl': 'h1',
+      'heading-l': 'h2',
+      'heading-m': 'h3',
+      'heading-s': 'h4',
+      'body-l': 'p',
+      'body-m': 'p',
+    };
 
-  const Comp = compMap[size] || Slot;
-  return <Comp className={cn(typographyVariants({ size, className }))} ref={ref} {...props} />;
-});
+    const Comp = compMap[size!] || Slot;
+    return <Comp className={cn(typographyVariants({ size, className }))} ref={ref} {...props} />;
+  },
+);
 
 Typography.displayName = 'Typography';
 

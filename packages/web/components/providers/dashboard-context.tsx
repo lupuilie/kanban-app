@@ -17,8 +17,7 @@ export const DashboardContext = createContext<DashboardContextType>(initialState
 
 export const DashboardContextProvider = ({ children }: { children: React.ReactNode }) => {
   const { width } = useWindowSize();
-  const canShowSidebar = (width && width < 768) || false;
-  const [sidebarVisible, setSidebarVisible] = useState(canShowSidebar);
+  const [sidebarVisible, setSidebarVisible] = useState(true);
 
   if (width && sidebarVisible && width < 768) {
     setSidebarVisible(false);

@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 
 import { cn } from '@/lib/utils';
-import { Eye } from 'lucide-react';
+import { Eye, EyeOff, MoonStar, Sun } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Typography } from '@/components/ui/typography';
@@ -17,7 +17,7 @@ export const Sidebar = () => {
   return (
     <aside
       className={cn(
-        'flex fixed h-[calc(100vh-96px)] min-w-[256px] lg:min-w-[300px] border-r border-r-border bg-white dark:bg-dark-grey z-10 flex-col justify-between pb-6 pr-6 transition-transform -translate-x-full',
+        'flex fixed h-[calc(100vh-80px)] lg:h-[calc(100vh-96px)] min-w-[256px] lg:min-w-[300px] border-r border-r-border bg-white dark:bg-dark-grey z-10 flex-col justify-between pb-6 transition-transform -translate-x-full',
         sidebarVisible && 'translate-x-0',
       )}
     >
@@ -25,20 +25,22 @@ export const Sidebar = () => {
         <Typography size="heading-s" className="pl-6 text-medium-grey pb-4">
           ALL BOARDS (3)
         </Typography>
-        <div>
-          <Button size="lg" className="w-full rounded-l-none justify-start pl-6">
-            <Typography size="heading-m">Platform launch</Typography>
-          </Button>
-        </div>
-        <div>
-          <Button size="lg" variant="ghost" className="w-full rounded-l-none justify-start pl-6">
-            <Typography size="heading-m">Roadmap</Typography>
-          </Button>
-        </div>
-        <div>
-          <Button size="lg" variant="ghost" className="w-full rounded-l-none justify-start pl-6">
-            <Typography size="heading-m">Marketing</Typography>
-          </Button>
+        <div className="pr-6">
+          <div>
+            <Button size="lg" className="w-full rounded-l-none justify-start pl-6">
+              <Typography size="heading-m">Platform launch</Typography>
+            </Button>
+          </div>
+          <div>
+            <Button size="lg" variant="ghost" className="w-full rounded-l-none justify-start pl-6">
+              <Typography size="heading-m">Roadmap</Typography>
+            </Button>
+          </div>
+          <div>
+            <Button size="lg" variant="ghost" className="w-full rounded-l-none justify-start pl-6">
+              <Typography size="heading-m">Marketing</Typography>
+            </Button>
+          </div>
         </div>
       </div>
       <div>
@@ -49,9 +51,10 @@ export const Sidebar = () => {
           <Button
             size="lg"
             variant="ghost"
-            className="w-full rounded-l-none justify-start pl-6"
+            className="w-full rounded-l-none justify-start pl-6 gap-2"
             onClick={toggleSidebar}
           >
+            <EyeOff />
             <Typography size="heading-m">Hide Sidebar</Typography>
           </Button>
         </div>
@@ -63,8 +66,8 @@ export const Sidebar = () => {
 export const SidebarToggle = () => {
   const { toggleSidebar } = useContext(DashboardContext);
   return (
-    <div className="hidden md:block fixed bottom-6 z-0">
-      <Button className="rounded-l-none" onClick={toggleSidebar}>
+    <div className="hidden md:block fixed bottom-6 z-0 ">
+      <Button className="rounded-l-none" size="lg" onClick={toggleSidebar}>
         <Eye />
       </Button>
     </div>
@@ -79,16 +82,17 @@ export function ThemeSwitch() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <Switch />;
-  }
-
   return (
-    <Switch
-      checked={theme === 'dark'}
-      onCheckedChange={(checked) => {
-        setTheme(checked ? 'dark' : 'light');
-      }}
-    />
+    <div className="flex gap-4 justify-center bg-light-grey dark:bg-very-dark-grey mx-3 py-3 rounded-lg">
+      <Sun className="text-medium-grey" />
+      <Switch
+        className="data-[state=checked]:bg-brand-purple data-[state=unchecked]:bg-brand-purple"
+        checked={mounted ? theme === 'dark' : false}
+        onCheckedChange={(checked) => {
+          setTheme(checked ? 'dark' : 'light');
+        }}
+      />
+      <MoonStar className="text-medium-grey" />
+    </div>
   );
 }

@@ -9,20 +9,25 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { fetchTaskById, updateTask } from '@/services/task';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-export default function TaskDialog() {
+type TaskDialogProps = {
+  params: { id: string };
+};
+
+export default function TaskDialog({ params: { id } }: TaskDialogProps) {
   const router = useRouter();
+  const queryKey = `task-${id}`;
 
   const { refetch, isLoading, isRefetching, isFetched } = useQuery({
-    queryKey: ['task'],
-    queryFn: () => fetchTaskById('1'),
+    queryKey: [queryKey],
+    queryFn: () => fetchTaskById(queryKey),
   });
 
   const { mutate, isPending } = useMutation({
-    mutationKey: ['task'],
-    mutationFn: () => updateTask('2', 'new name'),
+    mutationKey: [queryKey],
+    mutationFn: () => updateTask(queryKey, 'new name'),
     onSuccess: () => {
       refetch();
     },
@@ -46,7 +51,7 @@ export default function TaskDialog() {
 
         {isPending && <div>Updating...</div>}
 
-        {isFetched && <TaskDetails />}
+        {isFetched && <TaskDetails queryKey={queryKey} />}
 
         <Button
           disabled={isPending}
@@ -61,9 +66,9 @@ export default function TaskDialog() {
   );
 }
 
-const TaskDetails = () => {
+const TaskDetails = ({ queryKey }: { queryKey: string }) => {
   const { data } = useQuery({
-    queryKey: ['task'],
+    queryKey: [queryKey],
     queryFn: () => fetchTaskById('1'),
   });
   return (

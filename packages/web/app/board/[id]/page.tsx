@@ -1,63 +1,53 @@
-'use client';
-
-import { useContext } from 'react';
-
-import { DashboardContext } from '@/components/providers/dashboard-context';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Typography } from '@/components/ui/typography';
-import { cn } from '@/lib/utils';
+import { ColumnsWrapper } from './_components/columns-wrapper';
+import Link from '@/components/ui/link';
 
 export default function Page() {
   return (
     <ColumnsWrapper>
-      <section className="min-w-[280px]">
-        <Typography size="heading-s">TODO (4)</Typography>
-        <article>Card</article>
-        <article>Card</article>
-        <article>Card</article>
+      <section className="min-w-[280px] flex flex-col gap-4">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-cyan-400"></div>
+          <Typography size="heading-s" className="text-medium-grey">
+            TODO (4)
+          </Typography>
+        </div>
+        <TaskCard />
+        <TaskCard />
       </section>
-      <section className="min-w-[280px]">
-        <Typography size="heading-s">TODO (4)</Typography>
-        <article>Card</article>
-        <article>Card</article>
-        <article>Card</article>
+      <section className="min-w-[280px] flex flex-col gap-4">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-violet-400"></div>
+          <Typography size="heading-s" className="text-medium-grey">
+            DOING (4)
+          </Typography>
+        </div>
+        <TaskCard />
+        <TaskCard />
       </section>
-      <section className="min-w-[280px]">
-        <Typography size="heading-s">TODO (4)</Typography>
-        <article>Card</article>
-        <article>Card</article>
-        <article>Card</article>
-      </section>
-      <section className="min-w-[280px]">
-        <Typography size="heading-s">TODO (4)</Typography>
-        <article>Card</article>
-        <article>Card</article>
-        <article>Card</article>
-      </section>
-      <section className="min-w-[280px]">
-        <Typography size="heading-s">TODO (4)</Typography>
-        <article>Card</article>
-        <article>Card</article>
-        <article>Card</article>
+      <section className="min-w-[280px] flex flex-col gap-4">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+          <Typography size="heading-s" className="text-medium-grey">
+            DONE (4)
+          </Typography>
+        </div>
+        <TaskCard />
+        <TaskCard />
       </section>
     </ColumnsWrapper>
   );
 }
 
-const ColumnsWrapper = ({ children }: { children: React.ReactNode }) => {
-  const { sidebarVisible } = useContext(DashboardContext);
-
+export interface TaskCardProps extends React.HTMLAttributes<HTMLDivElement> {}
+const TaskCard = () => {
+  const rand = (Math.random() * 1000).toFixed(0);
   return (
-    <ScrollArea
-      className={cn(
-        'h-screen max-h-[calc(100vh-96px)] w-screen transition-transform pt-6 pl-4 lg:pl-6',
-        sidebarVisible
-          ? 'translate-x-[256px] lg:translate-x-[300px] max-w-[calc(100vw-256px)] lg:max-w-[calc(100vw-300px)]'
-          : '',
-      )}
-    >
-      <div className="flex">{children}</div>
-      <ScrollBar orientation="horizontal" />
-    </ScrollArea>
+    <Link href={`/task/${rand}`}>
+      <article className="bg-white dark:bg-dark-grey px-4 py-6 flex flex-col gap-2 rounded-lg shadow-lg z-10 cursor-pointer">
+        <Typography size="heading-m">Build UI for onboarding flow</Typography>
+        <Typography size="body-m">0 of 1 subtasks</Typography>
+      </article>
+    </Link>
   );
 };
