@@ -1,16 +1,17 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
 import {
   Dialog,
+  DialogTitle,
+  DialogHeader,
   DialogContent,
   DialogDescription,
-  DialogHeader,
-  DialogTitle,
 } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 import { fetchTaskById, updateTask } from '@/services/task';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 type TaskDialogProps = {
   params: { id: string };
@@ -18,18 +19,15 @@ type TaskDialogProps = {
 
 export default function TaskDialog({ params: { id } }: TaskDialogProps) {
   const router = useRouter();
-  const queryKey = `task-${id}`;
+  const queryClient = useQueryClient();
 
-  const { refetch, isLoading, isRefetching, isFetched } = useQuery({
-    queryKey: [queryKey],
-    queryFn: () => fetchTaskById(queryKey),
-  });
+  const queryKey = 'boards';
 
   const { mutate, isPending } = useMutation({
     mutationKey: [queryKey],
     mutationFn: () => updateTask(queryKey, 'new name'),
     onSuccess: () => {
-      refetch();
+      queryClient.refetchQueries({ queryKey: [queryKey] });
     },
   });
 
@@ -47,11 +45,6 @@ export default function TaskDialog({ params: { id } }: TaskDialogProps) {
           <DialogTitle>View task dialog</DialogTitle>
           <DialogDescription>Description</DialogDescription>
         </DialogHeader>
-        {(isRefetching || isLoading) && <div>Loading task...</div>}
-
-        {isPending && <div>Updating...</div>}
-
-        {isFetched && <TaskDetails queryKey={queryKey} />}
 
         <Button
           disabled={isPending}

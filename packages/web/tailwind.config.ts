@@ -28,6 +28,7 @@ const config = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
+          hover: 'hsl(var(--primary-hover))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -52,11 +53,6 @@ const config = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
-        },
-        'brand-purple': {
-          DEFAULT: 'hsl(var(--brand-purple))',
-          foreground: 'hsl(var(--brand-purple-foreground))',
-          hover: 'hsl(var(--brand-purple-hover))',
         },
         'dark-grey': 'hsl(var(--dark-grey))',
         'light-grey': 'hsl(var(--light-grey))',

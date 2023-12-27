@@ -7,9 +7,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex">
-        <Sidebar />
-      </main>
+      <main className="flex">go to /board</main>
       <SidebarToggle />
     </>
   );
