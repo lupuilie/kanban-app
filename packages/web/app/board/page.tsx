@@ -23,7 +23,7 @@ export default async function Page() {
   });
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)} options={{ defaultOptions: {} }}>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <Dashboard />
     </HydrationBoundary>
   );

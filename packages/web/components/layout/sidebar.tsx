@@ -8,16 +8,18 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Typography } from '@/components/ui/typography';
-import { Board } from '@kanban-app/core/domain/entities';
 import { DashboardContext } from '@/components/providers/dashboard-context';
+import { useQuery } from '@tanstack/react-query';
+import { fetchBoards } from '@/services/board';
 
-type SidebarProps = {
-  boards: Board[];
-};
+type SidebarProps = {};
 
-export const Sidebar = ({ boards }: SidebarProps) => {
+export const Sidebar = () => {
+  const { data, isStale, refetch } = useQuery({ queryKey: ['boards'], queryFn: fetchBoards });
   const { sidebarVisible, toggleSidebar, selectedBoardId, setSelectedBoardId } =
     useContext(DashboardContext);
+
+  const boards = data?.data ?? [];
 
   return (
     <aside
@@ -43,6 +45,9 @@ export const Sidebar = ({ boards }: SidebarProps) => {
                   }
 
                   setSelectedBoardId(id);
+                  if (isStale) {
+                    refetch();
+                  }
                 }}
               >
                 <Typography size="heading-m">{name}</Typography>

@@ -15,13 +15,16 @@ export default function Dashboard() {
   const { data } = useQuery({ queryKey: ['boards'], queryFn: fetchBoards });
 
   const boards = data?.data ?? [];
-  const selectedBoard = boards.find((board) => board.id === selectedBoardId);
+
+  const firstBoard = boards?.[0];
+  const selectedBoard = boards.find((board) => board.id === selectedBoardId) ?? firstBoard;
+
   const boardName = selectedBoard?.name ?? '';
   const boardColumns = selectedBoard?.columns ?? [];
 
   useEffect(() => {
-    if (!selectedBoard && boards.length > 0) {
-      setSelectedBoardId(boards[0].id);
+    if (selectedBoard) {
+      setSelectedBoardId(selectedBoard.id);
     }
   }, []);
 
@@ -29,7 +32,7 @@ export default function Dashboard() {
     <>
       <Header boardName={boardName} />
       <main className="flex relative">
-        <Sidebar boards={boards} />
+        <Sidebar />
         <BoardColumns columns={boardColumns} />
         <SidebarToggle />
       </main>

@@ -1,43 +1,13 @@
-import { Board, Task } from '@kanban-app/core/domain/entities';
-import { BoardColumn } from '@kanban-app/core/domain/entities/BoardColumn';
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+import { Board } from '@kanban-app/core/domain/entities';
 
 export const fetchBoards = async () => {
-  await delay(2000);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/boards`);
 
-  console.log('fetchBoards');
+  if (!response.ok) {
+    throw new Error('Failed to fetch boards');
+  }
 
-  const data = [toRawOject(mockPlatformLaunchBoard), toRawOject(mockMarketingPlanBoard)];
+  const data = ((await response.json())?.data ?? []) as Board[];
 
   return { data };
 };
-
-const mockPlatformLaunchBoard = Board.create({
-  id: 'boardId1',
-  name: 'Platform launch',
-  createdAt: new Date(),
-  columns: [
-    BoardColumn.create({
-      name: 'TODO',
-      createdAt: new Date(),
-      color: 'cyan',
-      tasks: [
-        Task.create({
-          id: 'id',
-          title: 'Build UI for onboarding flow',
-          description: 'description',
-          status: 'TODO',
-          createdAt: new Date(),
-          subtasks: [],
-        }),
-      ],
-    }),
-  ],
-});
-
-const mockMarketingPlanBoard = new Board('boardId2', 'Marketing plan', new Date(), []);
-
-function toRawOject<T>(entity: T): T {
-  return JSON.parse(JSON.stringify(entity));
-}

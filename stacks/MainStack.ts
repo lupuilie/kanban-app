@@ -4,6 +4,7 @@ export function MainStack({ stack }: StackContext) {
   const api = new Api(stack, 'api', {
     routes: {
       'GET /status': 'packages/functions/src/handlers/status.handler',
+      'GET /boards': 'packages/functions/src/handlers/board.handler',
     },
   });
 

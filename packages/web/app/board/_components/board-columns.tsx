@@ -32,8 +32,8 @@ export const BoardColumns = ({ columns }: { columns: BoardColumn[] }) => {
           <div className="px-4 py-4 lg:px-6 lg:py-6 flex flex-row gap-4">
             {columns.map((column) => (
               <TasksColumn key={column.name} heading={column.name} color={column.color}>
-                {column.tasks.map((task) => (
-                  <TaskCard key={task.id} id={task.id} />
+                {column.tasks.map(({ id, title }) => (
+                  <TaskCard key={id} id={id} title={title} />
                 ))}
               </TasksColumn>
             ))}
