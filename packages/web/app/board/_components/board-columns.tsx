@@ -12,15 +12,16 @@ import { DashboardContext } from '@/components/providers/dashboard-context';
 import { TaskCard } from './task-card';
 import { NewColumnPlaceholder, TasksColumn } from './tasks-column';
 import Link from '@/components/ui/link';
+import { useRouter } from 'next/navigation';
 
 export const BoardColumns = ({ columns }: { columns: BoardColumn[] }) => {
-  const { sidebarVisible } = useContext(DashboardContext);
-  const isBoardEmpty = columns.length === 0;
+  const router = useRouter();
+  const { sidebarVisible, isBoardEmpty } = useContext(DashboardContext);
 
   return (
     <div
       className={cn(
-        'w-screen transition-transform h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)]',
+        'w-screen transition-[transform, width] h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)]',
         sidebarVisible &&
           'translate-x-64 max-w-[calc(100vw-16rem)] lg:translate-x-[300px] lg:max-w-[calc(100vw-300px)]',
       )}
@@ -37,7 +38,7 @@ export const BoardColumns = ({ columns }: { columns: BoardColumn[] }) => {
                 ))}
               </TasksColumn>
             ))}
-            <NewColumnPlaceholder />
+            <NewColumnPlaceholder onClick={() => router.push('/board/add-column')} />
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
@@ -48,7 +49,7 @@ export const BoardColumns = ({ columns }: { columns: BoardColumn[] }) => {
 
 const EmptyBoardPlaceholder = () => {
   return (
-    <div className="w-full h-full px-4 lg:px-6 flex flex-col justify-center items-center gap-8">
+    <div className="h-full flex flex-col items-center justify-center gap-2">
       <h2 className="text-heading-l text-medium-grey text-center">
         This board is empty. Create a new column to get started.
       </h2>

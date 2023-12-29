@@ -2,10 +2,10 @@
 
 import {
   Dialog,
+  DialogTitle,
+  DialogHeader,
   DialogContent,
   DialogDescription,
-  DialogHeader,
-  DialogTitle,
 } from '@/components/ui/dialog';
 import { useRouter } from 'next/navigation';
 
@@ -23,7 +23,7 @@ export default function Page() {
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Delete board dialog</DialogTitle>
+          <DialogTitle>Edit board</DialogTitle>
           <DialogDescription>Description</DialogDescription>
         </DialogHeader>
       </DialogContent>

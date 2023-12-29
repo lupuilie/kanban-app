@@ -6,6 +6,8 @@ import { useWindowSize } from '@uidotdev/usehooks';
 type DashboardContextType = {
   sidebarVisible: boolean;
   selectedBoardId?: string;
+  isBoardEmpty?: boolean;
+  setIsBoardEmpty: (value: boolean) => void;
   toggleSidebar: () => void;
   setSelectedBoardId: (id: string) => void;
 };
@@ -13,6 +15,8 @@ type DashboardContextType = {
 const initialState = {
   sidebarVisible: true,
   selectedBoardId: undefined,
+  isBoardEmpty: undefined,
+  setIsBoardEmpty: () => {},
   toggleSidebar: () => {},
   setSelectedBoardId: () => {},
 } satisfies DashboardContextType;
@@ -25,6 +29,7 @@ export const DashboardContextProvider = ({ children }: { children: React.ReactNo
   const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true);
   const [sidebarVisible, setSidebarVisible] = useState<boolean>(false);
   const [selectedBoardId, setSelectedBoardId] = useState<string | undefined>();
+  const [isBoardEmpty, setIsBoardEmpty] = useState<boolean>(false);
 
   const toggleSidebar = () => setSidebarVisible((prev) => !prev);
 
@@ -34,7 +39,14 @@ export const DashboardContextProvider = ({ children }: { children: React.ReactNo
 
   return (
     <DashboardContext.Provider
-      value={{ sidebarVisible, toggleSidebar, selectedBoardId, setSelectedBoardId }}
+      value={{
+        sidebarVisible,
+        toggleSidebar,
+        selectedBoardId,
+        setSelectedBoardId,
+        isBoardEmpty,
+        setIsBoardEmpty,
+      }}
     >
       {children}
     </DashboardContext.Provider>

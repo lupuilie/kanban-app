@@ -11,7 +11,7 @@ import { DashboardContext } from '@/components/providers/dashboard-context';
 import { BoardColumns } from './board-columns';
 
 export default function Dashboard() {
-  const { selectedBoardId, setSelectedBoardId } = useContext(DashboardContext);
+  const { selectedBoardId, setSelectedBoardId, setIsBoardEmpty } = useContext(DashboardContext);
   const { data } = useQuery({ queryKey: ['boards'], queryFn: fetchBoards });
 
   const boards = data?.data ?? [];
@@ -25,6 +25,7 @@ export default function Dashboard() {
   useEffect(() => {
     if (selectedBoard) {
       setSelectedBoardId(selectedBoard.id);
+      setIsBoardEmpty(selectedBoard.columns.length === 0);
     }
   }, [selectedBoard]);
 

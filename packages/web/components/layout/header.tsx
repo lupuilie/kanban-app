@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { MoreVertical, ChevronDown, Plus } from 'lucide-react';
 
 import {
@@ -12,7 +12,7 @@ import {
 } from '../ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 import Link from '@/components/ui/link';
-import { ThemeSwitch } from './sidebar';
+import { BoardsList, ThemeSwitch } from './sidebar';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { DashboardContext } from '@/components/providers/dashboard-context';
@@ -30,7 +30,9 @@ type HeaderProps = {
 
 export const Header = ({ boardName, isLoading = false }: HeaderProps) => {
   const router = useRouter();
-  const { sidebarVisible } = useContext(DashboardContext);
+  const { sidebarVisible, isBoardEmpty } = useContext(DashboardContext);
+
+  const [isMobileDialogOpen, setIsMobileDialogOpen] = useState(false);
 
   return (
     <header className="w-full flex items-center bg-white dark:bg-dark-grey">
@@ -49,29 +51,39 @@ export const Header = ({ boardName, isLoading = false }: HeaderProps) => {
         )}
       >
         {isLoading ? (
-          <Skeleton className="h-[30px] w-72" />
+          <div className="flex items-center gap-4">
+            <Image src={logoMobile} alt={'logo mobile'} className="md:hidden" />
+            <Skeleton className="h-[30px] w-72" />
+          </div>
         ) : (
-          <h1 className="hidden md:block font-bold text-xl lg:text-heading-xl">{boardName}</h1>
+          <>
+            <h1 className="hidden md:block font-bold text-xl lg:text-heading-xl">{boardName}</h1>
+            <Dialog open={isMobileDialogOpen} onOpenChange={setIsMobileDialogOpen}>
+              <DialogTrigger asChild>
+                <div className="md:hidden flex items-center cursor-pointer">
+                  <Image src={logoMobile} alt={'logo mobile'} />
+                  <h1 className="text-heading-l pl-4 pr-2">{boardName}</h1>
+                  <ChevronDown className="text-primary" />
+                </div>
+              </DialogTrigger>
+              <DialogContent
+                centered={false}
+                className="top-28 left-[50%] translate-x-[-50%] w-[calc(100vw-32px)] max-w-72 rounded-lg p-0"
+              >
+                <div className="grid gap-4 py-4">
+                  <BoardsList onClickItem={() => setIsMobileDialogOpen(false)} />
+                  <ThemeSwitch />
+                </div>
+              </DialogContent>
+            </Dialog>
+          </>
         )}
 
-        <Dialog>
-          <DialogTrigger asChild>
-            <div className="md:hidden flex items-center cursor-pointer">
-              <Image src={logoMobile} alt={'logo mobile'} />
-              <h1 className="text-heading-l pl-4 pr-2">{boardName}</h1>
-              <ChevronDown className="text-primary" />
-            </div>
-          </DialogTrigger>
-          <DialogContent
-            centered={false}
-            className="top-28 left-[50%] translate-x-[-50%] w-full max-w-[calc(100vw-32px)] rounded-lg"
-          >
-            <ThemeSwitch />
-          </DialogContent>
-        </Dialog>
-
         <div className="flex">
-          <Button disabled={isLoading} onClick={() => router.push('/board/add-task')}>
+          <Button
+            disabled={isLoading || isBoardEmpty}
+            onClick={() => router.push('/board/add-task')}
+          >
             <span className="hidden md:block">+ Add new task</span>
             <Plus className="md:hidden" />
           </Button>
@@ -82,13 +94,17 @@ export const Header = ({ boardName, isLoading = false }: HeaderProps) => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="mr-4">
-              <DropdownMenuItem>
-                <Link href="#">Edit board</Link>
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => router.push('/board/edit')}
+              >
+                Edit board
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/board/delete" className="text-destructive">
-                  Delete board
-                </Link>
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => router.push('/board/delete')}
+              >
+                <span className="text-destructive">Delete board</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

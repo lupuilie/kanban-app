@@ -24,9 +24,12 @@ export const TasksColumn = ({ children, heading, color }: TaskSectionProps) => {
   );
 };
 
-export const NewColumnPlaceholder = () => {
+export const NewColumnPlaceholder = ({ onClick }: { onClick: () => void }) => {
   return (
-    <section className="min-w-[280px] group min-h-[60vh] max-h-[80vh] flex items-center justify-center cursor-pointer rounded-lg bg-gradient-to-b from-[#E9EFFA] to-[#e9effa80] dark:from-[#2B2C37] dark:to-[#2B2C3780]">
+    <section
+      onClick={onClick}
+      className="min-w-[280px] group min-h-[60vh] max-h-[80vh] flex items-center justify-center cursor-pointer rounded-lg bg-gradient-to-b from-[#E9EFFA] to-[#e9effa80] dark:from-[#2B2C3780] dark:to-[#2B2C3740]"
+    >
       <h1 className="text-heading-xl text-medium-grey group-hover:text-primary">+ New Column</h1>
     </section>
   );
