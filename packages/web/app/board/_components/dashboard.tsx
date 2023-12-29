@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { fetchBoards } from '@/services/board';
 import { Header } from '@/components/layout/header';
-import { Sidebar, SidebarToggle } from '@/components/layout/sidebar';
+import { Sidebar } from '@/components/layout/sidebar';
 import { DashboardContext } from '@/components/providers/dashboard-context';
 
 import { BoardColumns } from './board-columns';
@@ -26,15 +26,14 @@ export default function Dashboard() {
     if (selectedBoard) {
       setSelectedBoardId(selectedBoard.id);
     }
-  }, []);
+  }, [selectedBoard]);
 
   return (
     <>
       <Header boardName={boardName} />
-      <main className="flex relative">
-        <Sidebar />
+      <Sidebar />
+      <main>
         <BoardColumns columns={boardColumns} />
-        <SidebarToggle />
       </main>
     </>
   );

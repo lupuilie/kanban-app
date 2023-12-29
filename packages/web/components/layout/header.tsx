@@ -21,6 +21,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import darkLogo from '@/public/assets/logo-dark.svg';
 import lightLogo from '@/public/assets/logo-light.svg';
 import logoMobile from '@/public/assets/logo-mobile.svg';
+import { useRouter } from 'next/navigation';
 
 type HeaderProps = {
   boardName?: string;
@@ -28,6 +29,7 @@ type HeaderProps = {
 };
 
 export const Header = ({ boardName, isLoading = false }: HeaderProps) => {
+  const router = useRouter();
   const { sidebarVisible } = useContext(DashboardContext);
 
   return (
@@ -69,14 +71,12 @@ export const Header = ({ boardName, isLoading = false }: HeaderProps) => {
         </Dialog>
 
         <div className="flex">
-          <Link href="/board/add-task">
-            <Button>
-              <span className="hidden md:block">+ Add new task</span>
-              <Plus className="md:hidden" />
-            </Button>
-          </Link>
+          <Button disabled={isLoading} onClick={() => router.push('/board/add-task')}>
+            <span className="hidden md:block">+ Add new task</span>
+            <Plus className="md:hidden" />
+          </Button>
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger asChild disabled={isLoading}>
               <Button variant="ghost" className="w-min px-0 pl-2 dark:hover:bg-transparent">
                 <MoreVertical />
               </Button>

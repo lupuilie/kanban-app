@@ -1,13 +1,23 @@
 import { Board } from '@kanban-app/core/domain/entities';
 
 export const fetchBoards = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/boards`);
+  try {
+    console.log('fetchBoards');
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch boards');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/boards`, {
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch boards');
+    }
+
+    const data = ((await response.json())?.data ?? []) as Board[];
+
+    return { data };
+  } catch (e) {
+    if (e instanceof Error) {
+      throw new Error(e.message);
+    }
   }
-
-  const data = ((await response.json())?.data ?? []) as Board[];
-
-  return { data };
 };

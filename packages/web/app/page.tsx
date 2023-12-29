@@ -1,14 +1,15 @@
-import { Button } from '@/components/ui/button';
-
 import { Header } from '@/components/layout/header';
-import { Sidebar, SidebarToggle } from '@/components/layout/sidebar';
+import { SidebarToggle } from '@/components/layout/sidebar';
+import Link from '@/components/ui/link';
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className="flex">go to /board</main>
-      <SidebarToggle />
+      <main className="flex">
+        <Link href="/board">
+          Go to <span className="text-primary">/board</span>
+        </Link>
+      </main>
     </>
   );
 }

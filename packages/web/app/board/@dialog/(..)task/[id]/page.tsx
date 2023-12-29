@@ -46,6 +46,8 @@ export default function TaskDialog({ params: { id } }: TaskDialogProps) {
           <DialogDescription>Description</DialogDescription>
         </DialogHeader>
 
+        <TaskDetails taskId={id} />
+
         <Button
           disabled={isPending}
           onClick={() => {
@@ -59,15 +61,16 @@ export default function TaskDialog({ params: { id } }: TaskDialogProps) {
   );
 }
 
-const TaskDetails = ({ queryKey }: { queryKey: string }) => {
+const TaskDetails = ({ taskId }: { taskId: string }) => {
   const { data } = useQuery({
-    queryKey: [queryKey],
+    queryKey: ['boards'],
     queryFn: () => fetchTaskById('1'),
   });
+
   return (
     <div>
-      <div>id: {data?.data.id} </div>
-      <div>name: {data?.data.name} </div>
+      <div>taskId: {taskId} </div>
+      <p className="text-body-m">other informations about the task</p>
     </div>
   );
 };

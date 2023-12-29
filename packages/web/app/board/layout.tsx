@@ -1,3 +1,7 @@
+import { Header } from '@/components/layout/header';
+import { Suspense } from 'react';
+import { LoadingSkeleton } from './_components/loading-skeleton';
+
 type BoardLayoutProps = {
   dialog: React.ReactNode;
   children: React.ReactNode;
@@ -6,7 +10,7 @@ type BoardLayoutProps = {
 export default async function Layout(props: BoardLayoutProps) {
   return (
     <>
-      {props.children}
+      <Suspense fallback={<LoadingSkeleton />}>{props.children}</Suspense>
       {props.dialog}
     </>
   );

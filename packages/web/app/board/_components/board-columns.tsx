@@ -20,7 +20,7 @@ export const BoardColumns = ({ columns }: { columns: BoardColumn[] }) => {
   return (
     <div
       className={cn(
-        'h-screen w-screen',
+        'w-screen transition-transform h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)]',
         sidebarVisible &&
           'translate-x-64 max-w-[calc(100vw-16rem)] lg:translate-x-[300px] lg:max-w-[calc(100vw-300px)]',
       )}

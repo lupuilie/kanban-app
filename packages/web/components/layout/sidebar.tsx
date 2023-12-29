@@ -21,56 +21,61 @@ export const Sidebar = () => {
   const boards = data?.data ?? [];
 
   return (
-    <aside
-      className={cn(
-        `pb-6 z-10 -translate-x-full min-w-64 min-h-[calc(100vh-5rem)] lg:min-w-[300px]
-        fixed flex flex-col justify-between bg-white border-r border-r-border dark:bg-dark-grey transition-transform`,
-        sidebarVisible && 'translate-x-0',
-      )}
-    >
-      <div>
-        <h4 className="text-heading-s pl-6 text-medium-grey pb-4">ALL BOARDS ({boards.length})</h4>
-        <div className="pr-6">
-          {boards.map(({ id, name }) => (
-            <div key={id}>
-              <Button
-                size="lg"
-                variant={id === selectedBoardId ? 'default' : 'ghost'}
-                className="w-full rounded-l-none justify-start pl-6"
-                onClick={() => {
-                  if (id === selectedBoardId) {
-                    return;
-                  }
+    <>
+      <aside
+        className={cn(
+          `pb-6 z-10 -translate-x-full min-w-64 min-h-[calc(100vh-5rem)] lg:min-w-[300px]
+        fixed hidden md:flex flex-col justify-between bg-white border-r border-r-border dark:bg-dark-grey transition-transform`,
+          sidebarVisible && 'translate-x-0',
+        )}
+      >
+        <div>
+          <h4 className="text-heading-s pl-6 text-medium-grey pb-4">
+            ALL BOARDS ({boards.length})
+          </h4>
+          <div className="pr-6">
+            {boards.map(({ id, name }) => (
+              <div key={id}>
+                <Button
+                  size="lg"
+                  variant={id === selectedBoardId ? 'default' : 'ghost'}
+                  className="w-full rounded-l-none justify-start pl-6"
+                  onClick={() => {
+                    if (id === selectedBoardId) {
+                      return;
+                    }
 
-                  setSelectedBoardId(id);
-                  if (isStale) {
-                    refetch();
-                  }
-                }}
-              >
-                <h3 className="text-heading-m">{name}</h3>
-              </Button>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div>
-        <div>
-          <ThemeSwitch />
+                    setSelectedBoardId(id);
+                    if (isStale) {
+                      refetch();
+                    }
+                  }}
+                >
+                  <h3 className="text-heading-m">{name}</h3>
+                </Button>
+              </div>
+            ))}
+          </div>
         </div>
         <div>
-          <Button
-            size="lg"
-            variant="ghost"
-            className="w-full rounded-l-none justify-start pl-6 gap-2"
-            onClick={toggleSidebar}
-          >
-            <EyeOff />
-            <span className="text-heading-m">Hide Sidebar</span>
-          </Button>
+          <div>
+            <ThemeSwitch />
+          </div>
+          <div>
+            <Button
+              size="lg"
+              variant="ghost"
+              className="w-full rounded-l-none justify-start pl-6 gap-2"
+              onClick={toggleSidebar}
+            >
+              <EyeOff />
+              <span className="text-heading-m">Hide Sidebar</span>
+            </Button>
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
+      <SidebarToggle />
+    </>
   );
 };
 
