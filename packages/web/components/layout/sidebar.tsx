@@ -7,7 +7,6 @@ import { Eye, EyeOff, MoonStar, Sun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-import { Typography } from '@/components/ui/typography';
 import { DashboardContext } from '@/components/providers/dashboard-context';
 import { useQuery } from '@tanstack/react-query';
 import { fetchBoards } from '@/services/board';
@@ -24,14 +23,13 @@ export const Sidebar = () => {
   return (
     <aside
       className={cn(
-        'flex fixed h-[calc(100vh-80px)] lg:h-[calc(100vh-96px)] min-w-[256px] lg:min-w-[300px] border-r border-r-border bg-white dark:bg-dark-grey z-10 flex-col justify-between pb-6 transition-transform -translate-x-full',
+        `pb-6 z-10 -translate-x-full min-w-64 min-h-[calc(100vh-5rem)] lg:min-w-[300px]
+        fixed flex flex-col justify-between bg-white border-r border-r-border dark:bg-dark-grey transition-transform`,
         sidebarVisible && 'translate-x-0',
       )}
     >
       <div>
-        <Typography size="heading-s" className="pl-6 text-medium-grey pb-4">
-          ALL BOARDS ({boards.length})
-        </Typography>
+        <h4 className="text-heading-s pl-6 text-medium-grey pb-4">ALL BOARDS ({boards.length})</h4>
         <div className="pr-6">
           {boards.map(({ id, name }) => (
             <div key={id}>
@@ -50,7 +48,7 @@ export const Sidebar = () => {
                   }
                 }}
               >
-                <Typography size="heading-m">{name}</Typography>
+                <h3 className="text-heading-m">{name}</h3>
               </Button>
             </div>
           ))}
@@ -68,7 +66,7 @@ export const Sidebar = () => {
             onClick={toggleSidebar}
           >
             <EyeOff />
-            <Typography size="heading-m">Hide Sidebar</Typography>
+            <span className="text-heading-m">Hide Sidebar</span>
           </Button>
         </div>
       </div>

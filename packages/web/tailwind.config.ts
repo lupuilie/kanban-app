@@ -59,6 +59,14 @@ const config = {
         'very-dark-grey': 'hsl(var(--very-dark-grey))',
         'medium-grey': 'hsl(var(--medium-grey))',
       },
+      fontSize: {
+        'heading-xl': ['24px', { lineHeight: '30px', fontWeight: 700 }],
+        'heading-l': ['18px', { lineHeight: '23px', fontWeight: 700 }],
+        'heading-m': ['15px', { lineHeight: '20px', fontWeight: 700 }],
+        'heading-s': ['13px', { lineHeight: '15px', fontWeight: 700, letterSpacing: '2.4px' }],
+        'body-l': ['13px', { lineHeight: '23px', fontWeight: 500 }],
+        'body-m': ['12px', { lineHeight: '15px', fontWeight: 700 }],
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
