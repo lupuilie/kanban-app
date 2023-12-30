@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogTitle,
@@ -23,9 +24,16 @@ export default function Page() {
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create board</DialogTitle>
-          <DialogDescription>Description</DialogDescription>
+          <DialogTitle>Add New Board</DialogTitle>
         </DialogHeader>
+        <div>
+          <Button variant="secondary" className="w-full">
+            + Add New Column
+          </Button>
+        </div>
+        <div>
+          <Button className="w-full">Create New Board</Button>
+        </div>
       </DialogContent>
     </Dialog>
   );
