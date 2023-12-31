@@ -1,8 +1,8 @@
-import { redirect } from 'next/navigation';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 
 import { fetchBoards } from '@/services/board';
 import { getQueryClient } from '@/lib/getQueryClient';
+
 import Dashboard from './_components/dashboard';
 
 export type DashboardParams = {
@@ -17,23 +17,19 @@ export type BoardPageProps = {
 };
 
 export default async function Page() {
-  try {
-    const queryClient = getQueryClient();
+  const queryClient = getQueryClient();
 
-    await queryClient.fetchQuery({
-      queryKey: ['boards'],
-      queryFn: fetchBoards,
-      retry: false,
-    });
+  await queryClient.fetchQuery({
+    queryKey: ['boards'],
+    queryFn: fetchBoards,
+    retry: false,
+  });
 
-    const data = dehydrate(queryClient);
+  const data = dehydrate(queryClient);
 
-    return (
-      <HydrationBoundary state={data}>
-        <Dashboard />
-      </HydrationBoundary>
-    );
-  } catch (error) {
-    redirect('/error');
-  }
+  return (
+    <HydrationBoundary state={data}>
+      <Dashboard />
+    </HydrationBoundary>
+  );
 }

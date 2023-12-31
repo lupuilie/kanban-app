@@ -27,7 +27,7 @@ export default function Dashboard() {
       setSelectedBoardId(selectedBoard.id);
       setIsBoardEmpty(selectedBoard.columns.length === 0);
     }
-  }, [selectedBoard]);
+  }, [selectedBoard, setSelectedBoardId, setIsBoardEmpty]);
 
   return (
     <>

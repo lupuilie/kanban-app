@@ -1,4 +1,3 @@
-import { Header } from '@/components/layout/header';
 import { Suspense } from 'react';
 import { LoadingSkeleton } from './_components/loading-skeleton';
 
