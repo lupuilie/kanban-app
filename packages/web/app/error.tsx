@@ -22,7 +22,7 @@ export default function ErrorPage({
             An error occured in the application and your page could not be served. If you are the
             application owner, check your logs for details
           </p>
-          <div className="bg-background rounded-lg border">
+          <div className="rounded-lg border bg-card">
             <h2 className="p-3 text-heading-m">Error details</h2>
             <hr />
             <div className="p-3 text-body-l text-gray-600">

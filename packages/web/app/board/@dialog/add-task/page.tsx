@@ -15,6 +15,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useState } from 'react';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function Page() {
   const router = useRouter();
@@ -38,6 +39,14 @@ export default function Page() {
             <Label htmlFor="board-name">Title</Label>
             <Input id="board-name" type="text" placeholder="e.g. Take coffee break" />
           </div>
+          <div className="grid w-full items-center gap-2">
+            <Label htmlFor="task-description">Description</Label>
+            <Textarea
+              id="task-description"
+              placeholder="e.g. It`s always good to take a break. This 15 minute break will recharge the batteries a little."
+              rows={4}
+            />
+          </div>
           <div className="grid gap-2">
             <Label>Subtasks</Label>
             <div className="grid gap-3">
@@ -54,7 +63,7 @@ export default function Page() {
                 </Button>
               </div>
             </div>
-            <div>
+            <div className="pt-2">
               <Button variant="secondary" className="w-full">
                 + Add New Subtask
               </Button>
