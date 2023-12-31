@@ -1,15 +1,14 @@
 'use client';
 
-import {
-  Dialog,
-  DialogTitle,
-  DialogHeader,
-  DialogContent,
-  DialogDescription,
-} from '@/components/ui/dialog';
+import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-export default function Page() {
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogTitle, DialogHeader, DialogContent } from '@/components/ui/dialog';
+
+export default function EditBoardDialog() {
   const router = useRouter();
 
   return (
@@ -24,8 +23,40 @@ export default function Page() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit board</DialogTitle>
-          <DialogDescription>Description</DialogDescription>
         </DialogHeader>
+        <div className="grid gap-4 pt-6">
+          <div className="grid w-full items-center gap-2">
+            <Label htmlFor="board-name">Board Name</Label>
+            <Input id="board-name" type="text" placeholder="e.g. Web Design" />
+          </div>
+          <div className="grid gap-2">
+            <Label>Board Columns</Label>
+            <div className="grid gap-3 mt-2">
+              <div className="flex gap-4">
+                <Input id="board-name" type="text" placeholder="e.g. Todo" />
+                <Button variant="icon" size="icon" className="p-0">
+                  <X size={20} />
+                </Button>
+              </div>
+              <div className="flex gap-4">
+                <Input id="board-name" type="text" placeholder="e.g. Todo" />
+                <Button variant="icon" size="icon" className="p-0">
+                  <X size={20} />
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="pt-1 grid gap-6">
+            <div>
+              <Button variant="secondary" className="w-full">
+                + Add New Column
+              </Button>
+            </div>
+            <div>
+              <Button className="w-full">Save Changes</Button>
+            </div>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

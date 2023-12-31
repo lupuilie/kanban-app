@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-import { Dialog, DialogTitle, DialogHeader, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Dialog, DialogTitle, DialogHeader, DialogContent } from '@/components/ui/dialog';
 
 export default function Page() {
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function Page() {
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-heading-l">Add New Board</DialogTitle>
+          <DialogTitle>Add New Board</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 pt-6">
           <div className="grid w-full items-center gap-2">
@@ -44,7 +44,7 @@ export default function Page() {
                     onChange={(event) => updateColumnName(index, event.target.value)}
                   />
                   <Button
-                    variant="ghost"
+                    variant="icon"
                     size="icon"
                     className="p-0"
                     onClick={() => removeColumn(index)}
