@@ -11,8 +11,9 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { DashboardContext } from '@/components/providers/dashboard-context';
 
-import { TaskCard } from './task-card';
+import { TaskCard, TaskCardSkeleton } from './task-card';
 import { useBoards } from '@/hooks/useBoards';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export const BoardContent = () => {
   const router = useRouter();
@@ -23,7 +24,7 @@ export const BoardContent = () => {
   return (
     <div
       className={cn(
-        'w-screen transition-[transform, width] h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)]',
+        'w-screen transition-[transform,width] h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)]',
         sidebarVisible &&
           'translate-x-64 max-w-[calc(100vw-16rem)] lg:translate-x-[300px] lg:max-w-[calc(100vw-300px)]',
       )}
@@ -94,5 +95,34 @@ export const NewColumnPlaceholder = ({ onClick }: { onClick: () => void }) => {
     >
       <h1 className="text-heading-xl text-medium-grey group-hover:text-primary">+ New Column</h1>
     </section>
+  );
+};
+
+export const BoardContentSkeleton = () => {
+  return (
+    <div className="w-screen lg:max-w-[calc(100vw-16rem)]">
+      <ScrollArea>
+        <div className="px-4 py-4 lg:px-6 lg:py-6 flex flex-row gap-4">
+          <section className="min-w-[280px] flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <Skeleton className="h-4 w-20" />
+            </div>
+            <TaskCardSkeleton />
+            <TaskCardSkeleton className="h-24" />
+            <TaskCardSkeleton />
+            <TaskCardSkeleton />
+          </section>
+          <section className="min-w-[280px] flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <Skeleton className="h-4 w-24" />
+            </div>
+            <TaskCardSkeleton className="h-24" />
+            <TaskCardSkeleton />
+            <TaskCardSkeleton className="h-24" />
+          </section>
+        </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
+    </div>
   );
 };

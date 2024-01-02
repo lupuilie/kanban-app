@@ -12,6 +12,7 @@ import { DashboardContext } from '@/components/providers/dashboard-context';
 import { BoardIcon } from '@/components/ui/icons';
 import { useBoards } from '@/hooks/useBoards';
 import { ScrollArea, ScrollBar } from '../ui/scroll-area';
+import { Skeleton } from '../ui/skeleton';
 
 export const Sidebar = () => {
   const { sidebarVisible, toggleSidebar } = useContext(DashboardContext);
@@ -153,3 +154,20 @@ export function ThemeSwitch() {
     </div>
   );
 }
+
+export const SidebarSkeleton = () => (
+  <aside className="pb-6 z-10 w-64 min-h-[calc(100vh-5rem)] lg:w-[300px] shrink-0 hidden md:flex flex-col justify-between bg-white border-r border-r-border dark:bg-dark-grey transition-transform">
+    <div className="h-screen max-h-[calc(100vh-5rem-7.5rem)]">
+      <div className="px-6">
+        <Skeleton className="h-4 w-32" />
+        <Skeleton className="h-8 w-full mt-2" />
+        <Skeleton className="h-8 w-full mt-2" />
+        <Skeleton className="h-8 w-full mt-2" />
+      </div>
+    </div>
+    <div className="px-3">
+      <Skeleton className="h-12 w-full" />
+      <Skeleton className="h-4 w-36 mt-7" />
+    </div>
+  </aside>
+);

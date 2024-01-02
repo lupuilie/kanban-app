@@ -1,3 +1,6 @@
+import { Suspense } from 'react';
+import { DashboardSkeleton } from './_components/dashboard';
+
 type BoardLayoutProps = {
   dialog: React.ReactNode;
   children: React.ReactNode;
@@ -6,7 +9,7 @@ type BoardLayoutProps = {
 export default async function Layout(props: BoardLayoutProps) {
   return (
     <>
-      {props.children}
+      <Suspense fallback={<DashboardSkeleton />}>{props.children}</Suspense>
       {props.dialog}
     </>
   );

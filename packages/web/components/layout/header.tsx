@@ -123,14 +123,11 @@ export const HeaderSkeleton = () => {
       >
         <div className="flex items-center gap-4">
           <Image src={logoMobile} alt={'logo mobile'} className="md:hidden" />
-          <Skeleton className="h-[30px] w-72" />
+          <Skeleton className="h-8 w-72" />
         </div>
 
-        <div className="flex">
-          <Button disabled>
-            <span className="hidden md:block">+ Add new task</span>
-            <Plus className="md:hidden" />
-          </Button>
+        <div className="flex items-center">
+          <Skeleton className="h-8 w-11 rounded-3xl md:w-28" />
           <Button disabled variant="ghost" className="w-min px-0 pl-2 dark:hover:bg-transparent">
             <MoreVertical />
           </Button>

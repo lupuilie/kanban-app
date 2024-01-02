@@ -38,6 +38,8 @@ export const handler = ApiHandler(async (_evt) => {
 
   const data = [mockPlatformLaunchBoard, mockMarketingPlanBoard];
 
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
   return {
     statusCode: 200,
     body: JSON.stringify({ data }),

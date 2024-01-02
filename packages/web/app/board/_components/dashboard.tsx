@@ -1,9 +1,7 @@
-'use client';
+import { Header, HeaderSkeleton } from '@/components/layout/header';
+import { Sidebar, SidebarSkeleton } from '@/components/layout/sidebar';
 
-import { Header } from '@/components/layout/header';
-import { Sidebar } from '@/components/layout/sidebar';
-
-import { BoardContent } from './board-content';
+import { BoardContent, BoardContentSkeleton } from './board-content';
 
 export default function Dashboard() {
   return (
@@ -16,3 +14,13 @@ export default function Dashboard() {
     </>
   );
 }
+
+export const DashboardSkeleton = () => (
+  <>
+    <HeaderSkeleton />
+    <main className="flex">
+      <SidebarSkeleton />
+      <BoardContentSkeleton />
+    </main>
+  </>
+);

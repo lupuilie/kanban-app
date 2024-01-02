@@ -23,7 +23,7 @@ export const DashboardContextProvider = ({ children }: { children: React.ReactNo
   const { width } = useWindowSize();
 
   const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true);
-  const [sidebarVisible, setSidebarVisible] = useState<boolean>(false);
+  const [sidebarVisible, setSidebarVisible] = useState<boolean>(true);
   const [selectedBoardId, setSelectedBoardId] = useState<string | null>(null);
 
   const toggleSidebar = () => setSidebarVisible((prev) => !prev);
