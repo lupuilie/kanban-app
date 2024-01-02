@@ -1,19 +1,11 @@
-import { StackContext, Api, NextjsSite } from 'sst/constructs';
+import { StackContext } from 'sst/constructs';
+
+import { ApplicationAPI } from '@kanban-app/stacks/resources/ApplicationApi';
+import { NextFrontend } from '@kanban-app/stacks/resources/NextFrontend';
 
 export function MainStack({ stack }: StackContext) {
-  const api = new Api(stack, 'api', {
-    routes: {
-      'GET /status': 'packages/functions/src/handlers/status.handler',
-      'GET /boards': 'packages/functions/src/handlers/board.handler',
-    },
-  });
-
-  const web = new NextjsSite(stack, 'web', {
-    path: 'packages/web',
-    environment: {
-      NEXT_PUBLIC_API_ENDPOINT: api.url,
-    },
-  });
+  const api = ApplicationAPI.provision(stack);
+  const web = NextFrontend.provision(stack);
 
   stack.addOutputs({
     ApiEndpoint: api.url,
