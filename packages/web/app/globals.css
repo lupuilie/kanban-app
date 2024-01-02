@@ -21,7 +21,7 @@
     --secondary-hover: 242 48% 58% / 0.25;
     --secondary-foreground: 242 48% 58%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 242 48% 58%/0.25;
     --muted-foreground: 237 100% 4% / 0.25;
 
     --accent: 210 40% 96.1%;
@@ -61,7 +61,7 @@
     --secondary-hover: 0 0% 100%;
     --secondary-foreground: 242 48% 58%;
 
-    --muted: 217.2 32.6% 17.5%;
+    --muted: 242 48% 58%/0.25;
     --muted-foreground: 0 0% 100% / 0.25;
 
     --accent: 217.2 32.6% 17.5%;
@@ -92,7 +92,7 @@
 
   /* Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
 
   *::-webkit-scrollbar-track {

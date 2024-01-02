@@ -1,25 +1,16 @@
 'use client';
 
+import { useState } from 'react';
+import { MoreVertical } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import {
-  Dialog,
-  DialogTitle,
-  DialogHeader,
-  DialogContent,
-  DialogDescription,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { fetchTaskById, updateTask } from '@/services/task';
+import { Dialog, DialogTitle, DialogHeader, DialogContent } from '@/components/ui/dialog';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { MoreVertical } from 'lucide-react';
-import { useState } from 'react';
 import { Label } from '@/components/ui/label';
 import {
   Select,
@@ -49,8 +40,8 @@ const initialSubtasks = [
 ];
 
 export default function TaskDialog({ params: { id } }: TaskDialogProps) {
-  console.log(id);
   const router = useRouter();
+
   const [status, setStatus] = useState('todo');
   const [subtasks, setSubtasks] = useState<Subtask[]>(initialSubtasks);
 
@@ -75,8 +66,18 @@ export default function TaskDialog({ params: { id } }: TaskDialogProps) {
               <MoreVertical />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="min-w-48">
-              <DropdownMenuItem className="cursor-pointer">Edit Task</DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => {
+                  router.replace(`/task/${id}/edit`);
+                }}
+              >
+                Edit Task
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => router.replace(`/task/${id}/delete`)}
+              >
                 <span className="text-destructive">Delete Task</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -95,10 +96,9 @@ export default function TaskDialog({ params: { id } }: TaskDialogProps) {
             <div className="grid space-y-2">
               {subtasks.map((subtask) => (
                 <div
-                  key={id}
+                  key={`subtask-${subtask.id}`}
                   className={cn(
-                    'flex items-center space-x-4 p-4 rounded-lg bg-primary/25',
-                    subtask.isCompleted && 'bg-light-grey dark:bg-very-dark-grey',
+                    'flex items-center space-x-4 p-4 rounded-lg bg-light-grey dark:bg-popover hover:bg-muted transition-colors',
                   )}
                 >
                   <Checkbox
@@ -110,7 +110,7 @@ export default function TaskDialog({ params: { id } }: TaskDialogProps) {
                   <label
                     htmlFor={`subtask-${subtask.id}`}
                     className={cn(
-                      'text-body-m leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
+                      'text-body-m leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 cursor-pointer',
                       subtask.isCompleted && 'line-through opacity-50',
                     )}
                   >

@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
+import { useCreateBoard } from '@/hooks/useCreateBoard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -11,7 +12,9 @@ import { Dialog, DialogTitle, DialogHeader, DialogContent } from '@/components/u
 
 export default function Page() {
   const router = useRouter();
+  const inputNameRef = useRef<HTMLInputElement>(null);
   const [columnInputNames, setColumnInputNames] = useState<string[]>(['Todo', 'Doing', 'Done']);
+  const { createBoard } = useCreateBoard();
 
   return (
     <Dialog
@@ -29,7 +32,7 @@ export default function Page() {
         <div className="grid gap-4 pt-6">
           <div className="grid w-full items-center gap-2">
             <Label htmlFor="board-name">Board Name</Label>
-            <Input id="board-name" type="text" placeholder="e.g. Web Design" />
+            <Input id="board-name" type="text" placeholder="e.g. Web Design" ref={inputNameRef} />
           </div>
           <div className="grid gap-2">
             <Label>Board Columns</Label>
@@ -62,7 +65,7 @@ export default function Page() {
               </Button>
             </div>
             <div>
-              <Button className="w-full" onClick={createBoard}>
+              <Button className="w-full" onClick={createBoardHandler}>
                 Create New Board
               </Button>
             </div>
@@ -71,6 +74,10 @@ export default function Page() {
       </DialogContent>
     </Dialog>
   );
+
+  function getInputName() {
+    return inputNameRef.current?.value ?? '';
+  }
 
   function addColumn() {
     setColumnInputNames((columnInputNames) => [...columnInputNames, '']);
@@ -90,7 +97,8 @@ export default function Page() {
     );
   }
 
-  function createBoard() {
+  function createBoardHandler() {
     console.log('create board ', columnInputNames);
+    createBoard({ name: getInputName(), columns: [] });
   }
 }

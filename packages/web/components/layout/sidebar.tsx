@@ -2,7 +2,6 @@
 
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
 import { DOMAttributes, useContext, useEffect, useState } from 'react';
 import { Eye, EyeOff, MoonStar, Sun } from 'lucide-react';
 
@@ -10,8 +9,9 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { DashboardContext } from '@/components/providers/dashboard-context';
-import { fetchBoards } from '@/services/board';
 import { BoardIcon } from '@/components/ui/icons';
+import { useBoards } from '@/hooks/useBoards';
+import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 
 export const Sidebar = () => {
   const { sidebarVisible, toggleSidebar } = useContext(DashboardContext);
@@ -24,7 +24,11 @@ export const Sidebar = () => {
           sidebarVisible && 'translate-x-0',
         )}
       >
-        <BoardsList />
+        <ScrollArea className="h-screen max-h-[calc(100vh-5rem-7.5rem)]">
+          {/* 5rem = header, 7.5rem = footer */}
+          <BoardsList />
+          <ScrollBar orientation="vertical" />
+        </ScrollArea>
         <div>
           <ThemeSwitch />
           <Button
@@ -43,18 +47,23 @@ export const Sidebar = () => {
   );
 };
 
-export const BoardsList = ({ onClickItem }: { onClickItem?: () => void }) => {
+export const BoardsList = ({
+  onClickItem,
+  className,
+}: {
+  className?: string;
+  onClickItem?: () => void;
+}) => {
   const router = useRouter();
-  const { data, isStale, refetch } = useQuery({ queryKey: ['boards'], queryFn: fetchBoards });
-  const { selectedBoardId, setSelectedBoardId, setIsBoardEmpty } = useContext(DashboardContext);
-
-  const boards = data?.data ?? [];
+  const { setSelectedBoardId } = useContext(DashboardContext);
+  const { boards, selectedBoardId, refetchIfNeeded } = useBoards();
 
   return (
-    <div>
+    <div className={cn(className)}>
       <h4 className="text-heading-s pl-6 text-medium-grey pb-4">ALL BOARDS ({boards.length})</h4>
+
       <div className="pr-6">
-        {boards.map(({ id, name, columns }) => (
+        {boards.map(({ id, name }) => (
           <div key={id}>
             <SidebarButton
               active={id === selectedBoardId}
@@ -64,11 +73,8 @@ export const BoardsList = ({ onClickItem }: { onClickItem?: () => void }) => {
                 }
 
                 setSelectedBoardId(id);
-                setIsBoardEmpty(columns.length === 0);
+                refetchIfNeeded();
                 onClickItem?.();
-                if (isStale) {
-                  refetch();
-                }
               }}
             >
               {name}

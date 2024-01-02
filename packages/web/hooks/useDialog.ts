@@ -1,14 +1,14 @@
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 
-export type UseDialogProps = {
+export type UseDialogOptions = {
   initialOpen?: boolean;
   onCloseNavigateBack?: boolean;
   onCloseEnableBodyPointerEvents?: boolean;
   onOpenChange?: (newOpen: boolean) => void;
 };
 
-export const useDialog = (props?: UseDialogProps) => {
+export const useDialog = (props?: UseDialogOptions) => {
   const {
     initialOpen,
     onCloseNavigateBack = true,

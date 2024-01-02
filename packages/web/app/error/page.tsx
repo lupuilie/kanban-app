@@ -1,5 +1,5 @@
-import Link from '@/components/ui/link';
 import { AlertCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ErrorPage() {
   return (

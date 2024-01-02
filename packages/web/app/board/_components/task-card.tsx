@@ -1,4 +1,4 @@
-import Link from '@/components/ui/link';
+import Link from 'next/link';
 
 export interface TaskCardProps extends React.HTMLAttributes<HTMLDivElement> {
   id: string;
