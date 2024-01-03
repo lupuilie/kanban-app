@@ -3,7 +3,7 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { fetchBoards } from '@/services/board';
 import { getQueryClient } from '@/lib/getQueryClient';
 
-import Dashboard, { DashboardSkeleton } from './_components/dashboard';
+import { Dashboard } from './_components/dashboard';
 
 export type DashboardParams = {
   boardId: string;

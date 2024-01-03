@@ -3,7 +3,7 @@ import { Sidebar } from '@/components/layout/sidebar';
 
 import { BoardContent } from './board-content';
 
-export default function Dashboard() {
+export const Dashboard = () => {
   return (
     <>
       <Header />
@@ -13,4 +13,4 @@ export default function Dashboard() {
       </main>
     </>
   );
-}
+};
