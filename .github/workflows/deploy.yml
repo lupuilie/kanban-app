@@ -20,6 +20,8 @@ jobs:
         run: yarn sst types --stage dev
       - name: Typecheck
         run: yarn workspaces run typecheck
+      - name: Unit tests
+        run: yarn workspaces run test
 
   deploy:
     runs-on: ubuntu-latest
