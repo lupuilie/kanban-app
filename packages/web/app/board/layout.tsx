@@ -1,17 +1,15 @@
 type BoardLayoutProps = {
   dialog: React.ReactNode;
   children: React.ReactNode;
-  dashboard: React.ReactNode;
 };
 
 export const dynamic = 'force-dynamic';
 
-export default async function Layout(props: BoardLayoutProps) {
+export default async function Layout({ children, dialog }: BoardLayoutProps) {
   return (
     <>
-      {props.dashboard}
-      {props.children}
-      {props.dialog}
+      {children}
+      {dialog}
     </>
   );
 }
