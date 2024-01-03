@@ -1,5 +1,3 @@
-'use client';
-
 import { HeaderSkeleton } from '@/components/layout/header';
 import { SidebarSkeleton } from '@/components/layout/sidebar';
 import { BoardContentSkeleton } from './_components/board-content';
