@@ -2,7 +2,7 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 
 import { fetchBoards } from '@/services/board';
 import { getQueryClient } from '@/lib/getQueryClient';
-import { Dashboard } from '../_components/dashboard';
+import { Dashboard } from '../../_components/dashboard';
 
 export default async function Page() {
   const queryClient = getQueryClient();
