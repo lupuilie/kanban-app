@@ -21,7 +21,7 @@ jobs:
       - name: Typecheck
         run: yarn workspaces run typecheck
       - name: Unit tests
-        run: yarn workspaces run test
+        run: yarn workspaces run test -- --stage dev
 
   deploy:
     runs-on: ubuntu-latest
