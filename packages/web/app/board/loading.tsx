@@ -3,6 +3,7 @@ import { SidebarSkeleton } from '@/components/layout/sidebar';
 import { BoardContentSkeleton } from './_components/board-content';
 
 export default function DashboardLoading() {
+  console.log('loading: /board');
   return (
     <>
       <HeaderSkeleton />

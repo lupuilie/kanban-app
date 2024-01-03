@@ -1,5 +1,3 @@
-import { Suspense } from 'react';
-
 type BoardLayoutProps = {
   dialog: React.ReactNode;
   children: React.ReactNode;
