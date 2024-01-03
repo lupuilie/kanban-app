@@ -4,6 +4,8 @@ type BoardLayoutProps = {
   dashboard: React.ReactNode;
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function Layout(props: BoardLayoutProps) {
   return (
     <>
