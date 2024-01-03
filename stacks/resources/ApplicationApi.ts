@@ -19,7 +19,7 @@ export class ApplicationAPI {
         },
         routes: {
           'GET /status': 'packages/functions/src/handlers/status.handler',
-          'GET /boards': 'packages/functions/src/handlers/board.handler',
+          'GET /boards': 'packages/functions/src/handlers/board/board.handler',
         },
       });
 
