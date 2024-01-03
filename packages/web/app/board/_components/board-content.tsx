@@ -24,7 +24,7 @@ export const BoardContent = () => {
   return (
     <div
       className={cn(
-        'w-screen transition-[transform,width] h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)]',
+        'w-screen transition-[transform, width] h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)]',
         sidebarVisible &&
           'translate-x-64 max-w-[calc(100vw-16rem)] lg:translate-x-[300px] lg:max-w-[calc(100vw-300px)]',
       )}
