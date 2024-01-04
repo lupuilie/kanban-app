@@ -291,6 +291,55 @@
     "@smithy/util-utf8" "^2.0.2"
     tslib "^2.5.0"
 
+"@aws-sdk/client-dynamodb@^3.484.0":
+  version "3.484.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-dynamodb/-/client-dynamodb-3.484.0.tgz#11e0c26f1c87dc5cd62de663ff00eefe91f81282"
+  integrity sha512-yCOzitHeeSbauH5LK0SZF4wgpYzfOBiRU8gHp75Xs+kG8QT+kBmtsjoaa6tmtvtCgqWgujuFqv7Gzd2GEePEgw==
+  dependencies:
+    "@aws-crypto/sha256-browser" "3.0.0"
+    "@aws-crypto/sha256-js" "3.0.0"
+    "@aws-sdk/client-sts" "3.484.0"
+    "@aws-sdk/core" "3.481.0"
+    "@aws-sdk/credential-provider-node" "3.484.0"
+    "@aws-sdk/middleware-endpoint-discovery" "3.470.0"
+    "@aws-sdk/middleware-host-header" "3.468.0"
+    "@aws-sdk/middleware-logger" "3.468.0"
+    "@aws-sdk/middleware-recursion-detection" "3.468.0"
+    "@aws-sdk/middleware-user-agent" "3.478.0"
+    "@aws-sdk/region-config-resolver" "3.484.0"
+    "@aws-sdk/types" "3.468.0"
+    "@aws-sdk/util-endpoints" "3.478.0"
+    "@aws-sdk/util-user-agent-browser" "3.468.0"
+    "@aws-sdk/util-user-agent-node" "3.470.0"
+    "@smithy/config-resolver" "^2.0.22"
+    "@smithy/core" "^1.2.1"
+    "@smithy/fetch-http-handler" "^2.3.1"
+    "@smithy/hash-node" "^2.0.17"
+    "@smithy/invalid-dependency" "^2.0.15"
+    "@smithy/middleware-content-length" "^2.0.17"
+    "@smithy/middleware-endpoint" "^2.2.3"
+    "@smithy/middleware-retry" "^2.0.25"
+    "@smithy/middleware-serde" "^2.0.15"
+    "@smithy/middleware-stack" "^2.0.9"
+    "@smithy/node-config-provider" "^2.1.8"
+    "@smithy/node-http-handler" "^2.2.1"
+    "@smithy/protocol-http" "^3.0.11"
+    "@smithy/smithy-client" "^2.2.0"
+    "@smithy/types" "^2.7.0"
+    "@smithy/url-parser" "^2.0.15"
+    "@smithy/util-base64" "^2.0.1"
+    "@smithy/util-body-length-browser" "^2.0.1"
+    "@smithy/util-body-length-node" "^2.1.0"
+    "@smithy/util-defaults-mode-browser" "^2.0.23"
+    "@smithy/util-defaults-mode-node" "^2.0.31"
+    "@smithy/util-endpoints" "^1.0.7"
+    "@smithy/util-middleware" "^2.0.8"
+    "@smithy/util-retry" "^2.0.8"
+    "@smithy/util-utf8" "^2.0.2"
+    "@smithy/util-waiter" "^2.0.15"
+    tslib "^2.5.0"
+    uuid "^8.3.2"
+
 "@aws-sdk/client-ecs@^3.454.0":
   version "3.484.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-ecs/-/client-ecs-3.484.0.tgz#803a6ccf6bfd7155a9596af996711dea75aef95e"
@@ -970,6 +1019,24 @@
     "@smithy/types" "^2.7.0"
     tslib "^2.5.0"
 
+"@aws-sdk/endpoint-cache@3.465.0":
+  version "3.465.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/endpoint-cache/-/endpoint-cache-3.465.0.tgz#c1d3d001a69d874b4d397fa5b29599bd4eea9756"
+  integrity sha512-0cuotk23hVSrqxHkJ3TTWC9MVMRgwlUvCatyegJEauJnk8kpLSGXE5KVdExlUBwShGNlj7ac29okZ9m17iTi5Q==
+  dependencies:
+    mnemonist "0.38.3"
+    tslib "^2.5.0"
+
+"@aws-sdk/lib-dynamodb@^3.484.0":
+  version "3.484.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/lib-dynamodb/-/lib-dynamodb-3.484.0.tgz#3ab8017fd2a5996ac2b47afe3b31a9e3b7fdf753"
+  integrity sha512-JoFuaOj3pZ2Gs5KaxXrozlPpHQnTDOuTMg3Zc3SKgi/vQdsDr3s3wfbg5AAxp8QSEhbnVg+6fW+Uc9hR1HKtMQ==
+  dependencies:
+    "@aws-sdk/util-dynamodb" "3.484.0"
+    "@smithy/smithy-client" "^2.2.0"
+    "@smithy/types" "^2.7.0"
+    tslib "^2.5.0"
+
 "@aws-sdk/middleware-bucket-endpoint@3.484.0":
   version "3.484.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/middleware-bucket-endpoint/-/middleware-bucket-endpoint-3.484.0.tgz#904d21096978f6d0bc286ef0354ea9c90f9ae121"
@@ -981,6 +1048,18 @@
     "@smithy/protocol-http" "^3.0.11"
     "@smithy/types" "^2.7.0"
     "@smithy/util-config-provider" "^2.1.0"
+    tslib "^2.5.0"
+
+"@aws-sdk/middleware-endpoint-discovery@3.470.0":
+  version "3.470.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/middleware-endpoint-discovery/-/middleware-endpoint-discovery-3.470.0.tgz#7bc25fac1a334b93f6bdba62c740bf0501837422"
+  integrity sha512-pN+3Y7W3Xvs6pE2RlkXmO7ugOGLXsGR3zJI/fiGOLoCOGESuM3fq3CXdasOl76wch0L9iB1lPmoHMabkxKugGQ==
+  dependencies:
+    "@aws-sdk/endpoint-cache" "3.465.0"
+    "@aws-sdk/types" "3.468.0"
+    "@smithy/node-config-provider" "^2.1.8"
+    "@smithy/protocol-http" "^3.0.11"
+    "@smithy/types" "^2.7.0"
     tslib "^2.5.0"
 
 "@aws-sdk/middleware-expect-continue@3.468.0":
@@ -1203,6 +1282,13 @@
   version "3.465.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/util-arn-parser/-/util-arn-parser-3.465.0.tgz#2896f6b06f69770378586853c97a0f283cbb2e20"
   integrity sha512-zOJ82vzDJFqBX9yZBlNeHHrul/kpx/DCoxzW5UBbZeb26kfV53QhMSoEmY8/lEbBqlqargJ/sgRC845GFhHNQw==
+  dependencies:
+    tslib "^2.5.0"
+
+"@aws-sdk/util-dynamodb@3.484.0":
+  version "3.484.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-dynamodb/-/util-dynamodb-3.484.0.tgz#21aaeb9b9a87eab0f6abc34119cdbddc97a53b5d"
+  integrity sha512-IttZ0i26CBEElCSJ6R2ccOGqOeEHp99Vdh/k+jNfpaRKP1gigJfJWzO7I2rUGjaO9AO7kFL8/P2nRqPg3deAGQ==
   dependencies:
     tslib "^2.5.0"
 
@@ -1768,6 +1854,11 @@
   version "8.56.0"
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.56.0.tgz#ef20350fec605a7f7035a01764731b2de0f3782b"
   integrity sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==
+
+"@faker-js/faker@^8.3.1":
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-8.3.1.tgz#7753df0cb88d7649becf984a96dd1bd0a26f43e3"
+  integrity sha512-FdgpFxY6V6rLZE9mmIBb9hM0xpfvQOSNOLnzolzKwsE1DH+gC7lEKV1p1IbR0lAYyvYd5a4u3qWJzowUkw1bIw==
 
 "@fastify/busboy@^2.0.0":
   version "2.1.0"
@@ -6317,6 +6408,13 @@ mlly@^1.2.0, mlly@^1.4.2:
     pkg-types "^1.0.3"
     ufo "^1.3.0"
 
+mnemonist@0.38.3:
+  version "0.38.3"
+  resolved "https://registry.yarnpkg.com/mnemonist/-/mnemonist-0.38.3.tgz#35ec79c1c1f4357cfda2fe264659c2775ccd7d9d"
+  integrity sha512-2K9QYubXx/NAjv4VLq1d1Ly8pWNC5L3BrixtdkyTegXWJIqY+zLNDhhX/A+ZwWt70tB1S8H4BE8FLYEFyNoOBw==
+  dependencies:
+    obliterator "^1.6.1"
+
 mnemonist@^0.39.5:
   version "0.39.7"
   resolved "https://registry.yarnpkg.com/mnemonist/-/mnemonist-0.39.7.tgz#712eebb827a31c83c9711f17d6256d2670c87a30"
@@ -6558,6 +6656,11 @@ object.values@^1.1.6, object.values@^1.1.7:
     call-bind "^1.0.2"
     define-properties "^1.2.0"
     es-abstract "^1.22.1"
+
+obliterator@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/obliterator/-/obliterator-1.6.1.tgz#dea03e8ab821f6c4d96a299e17aef6a3af994ef3"
+  integrity sha512-9WXswnqINnnhOG/5SLimUlzuU1hFJUc8zkwyD59Sd+dPOMf05PmnYG/d6Q7HZ+KmgkZJa1PxRso6QdM3sTNHig==
 
 obliterator@^2.0.1:
   version "2.0.4"
