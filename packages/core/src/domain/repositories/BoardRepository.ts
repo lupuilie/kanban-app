@@ -1,6 +1,7 @@
 import { Board } from '../entities';
 
 export abstract class BoardRepository {
-  abstract findById(id: string): Promise<Board[]>;
-  abstract findByUserId(userId: string): Promise<Board[]>;
+  abstract findBoardById(id: string): Promise<Board>;
+  abstract findBoardsByIds(ids: string[]): Promise<Board[]>;
+  abstract findBoardsByUserId(userId: string): Promise<Board[]>;
 }

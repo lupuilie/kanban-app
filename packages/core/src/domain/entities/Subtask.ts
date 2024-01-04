@@ -5,4 +5,8 @@ export class Subtask {
     public isCompleted: boolean,
     public createdAt: Date,
   ) {}
+
+  static create(subtask: Subtask) {
+    return new Subtask(subtask.id, subtask.title, subtask.isCompleted, subtask.createdAt);
+  }
 }
