@@ -1,1 +1,1 @@
-export * from './findUserBoards';
+export * from './findUserBoards/findUserBoards';
