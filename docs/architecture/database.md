@@ -11,6 +11,15 @@ The schema is very simple, it has two tables: `boards` and `users`.
 ### Boards table
 
 ```json
+// Board access entity
+{
+  "PK": "USER#userId", // PK
+  "SK": "BOARD#boardId", // SK
+  "EntityType": "BOARD_ACCESS",
+  "role": "enum", // CONTRIBUTOR | ...
+  "createdAt": "string",
+}
+
 // Board entity
 {
   "PK": "BOARD#boardId", // PK
@@ -18,14 +27,18 @@ The schema is very simple, it has two tables: `boards` and `users`.
   "EntityType": "BOARD",
   "name": "string",
   "createdAt": "string",
-  "columns": [
-    {
-      "columnId": "string",
-      "name": "string",
-      "color": "string"
-    }
-  ]
 }
+
+// Column entity
+{
+  "PK": "BOARD#boardId", // PK
+  "SK": "COLUMN#columnId", // SK
+  "EntityType": "COLUMN",
+  "name": "string",
+  "color": "string",
+  "position": 0 // number
+}
+
 // Task entity
 {
   "PK": "BOARD#boardId", // PK
@@ -34,6 +47,7 @@ The schema is very simple, it has two tables: `boards` and `users`.
   "columnId": "string",
   "title": "string",
   "description": "string",
+  "position": 0, // number
   "subtasks": [
     {
       "subtaskId": "string",
@@ -48,16 +62,9 @@ The schema is very simple, it has two tables: `boards` and `users`.
 
 ```json
 {
-  "userId": "string", // PK
+  "PK": "string", // PK
   "username": "string",
-  "password": "string",
-  "boards": [
-    {
-      "boardId": "string",
-      "name:": "string",
-      "permission": "string"
-    }
-  ]
+  "password": "string"
 }
 ```
 
@@ -65,25 +72,52 @@ The schema is very simple, it has two tables: `boards` and `users`.
 
 Below are the access patterns that I will use in the application.
 
-- Get boards that the user has access to
+- Get all boards that user have access to
 
-```
-PK: USER#userId
-SK: BOARD#boardId
-```
-
-- Get board by id
-
-```
-PK: BOARD#boardId
-SK: BOARD#boardId
+```JSON
+{
+  "PK": "USER#userId",
+  "SK": // starts with "BOARD#"
+}
 ```
 
-- Get tasks by board id
+- Get board with columns and tasks
 
-```
-PK: BOARD#boardId
-SK: TASK#
+```JSON
+{
+  "PK": "BOARD#boardId",
+}
 ```
 
-> **SK** starts with `TASK#` so that I can use the `begins_with` operator to get all tasks of a board.
+- Get boards (batch)
+
+  ```JSON
+  [
+    {
+      "PK": "BOARD#boardId",
+      "SK": "BOARD#boardId"
+    },
+    {
+      "PK": "BOARD#boardId",
+      "SK": "BOARD#boardId"
+    }
+  ]
+  ```
+
+- Get all columns for a board
+
+```JSON
+{
+  "PK": "BOARD#boardId",
+  "SK": // starts with "COLUMN#"
+}
+```
+
+- Get all tasks for a board
+
+```JSON
+{
+  "PK": "BOARD#boardId",
+  "SK": // starts with "TASK#"
+}
+```
