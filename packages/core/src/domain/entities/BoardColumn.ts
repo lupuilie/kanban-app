@@ -1,21 +1,21 @@
-import { Task } from './Task';
-
-export type BoardColumnColor = 'purple' | 'cyan' | 'green';
-
 export class BoardColumn {
   constructor(
+    public boardId: string,
+    public columnId: string,
     public name: string,
+    public color: string,
+    public position: number,
     public createdAt: Date,
-    public color: BoardColumnColor,
-    public tasks: Task[],
   ) {}
 
   static create(boardColumn: BoardColumn) {
     return new BoardColumn(
+      boardColumn.boardId,
+      boardColumn.columnId,
       boardColumn.name,
-      boardColumn.createdAt,
       boardColumn.color,
-      boardColumn.tasks,
+      boardColumn.position,
+      boardColumn.createdAt,
     );
   }
 }
