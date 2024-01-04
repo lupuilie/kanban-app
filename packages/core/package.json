@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "sst bind vitest run",
+    "test:dev": "sst bind vitest",
     "typecheck": "tsc -noEmit"
   },
   "devDependencies": {
