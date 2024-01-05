@@ -5,7 +5,7 @@ export class BoardColumn {
     public name: string,
     public color: string,
     public position: number,
-    public createdAt: Date,
+    public createdAt: string,
   ) {}
 
   static create(boardColumn: BoardColumn) {

@@ -3,7 +3,7 @@ export class Subtask {
     public id: string,
     public title: string,
     public isCompleted: boolean,
-    public createdAt: Date,
+    public createdAt: string,
   ) {}
 
   static create(subtask: Subtask) {
