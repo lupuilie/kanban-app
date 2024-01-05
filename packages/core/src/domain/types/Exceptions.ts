@@ -16,3 +16,9 @@ export class UnauthorizedException extends BaseException {
     super(message);
   }
 }
+
+export class InvalidInputException extends BaseException {
+  constructor(message: string) {
+    super(message);
+  }
+}

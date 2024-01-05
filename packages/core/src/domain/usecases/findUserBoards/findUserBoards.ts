@@ -36,7 +36,7 @@ export const findUserBoards: UseCaseConstructor<Params, Request, Board[]> = (par
     const user = await userRepository.findById(userId);
 
     if (!user) {
-      throw new NotFoundException(`User with id <${userId}> does not exist`);
+      throw new NotFoundException(`user with id <${userId}> does not exist`);
     }
   }
 

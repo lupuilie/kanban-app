@@ -2,10 +2,8 @@ import { vi, describe, it, expect, Mocked, afterEach } from 'vitest';
 
 import { findUserBoards } from './findUserBoards';
 import { NotFoundException } from '@kanban-app/core/domain/types';
-import { UserBuilder } from '@kanban-app/core/infrastructure/shared/UserBuilder';
+import { UserBuilder, BoardBuilder, BoardAccessBuilder } from '@kanban-app/core/infrastructure/shared/builders';
 import { BoardAccessRepository, BoardRepository, UserRepository } from '@kanban-app/core/domain/repositories';
-import { BoardBuilder } from '@kanban-app/core/infrastructure/shared/BoardBuilder';
-import { BoardAccessBuilder } from '@kanban-app/core/infrastructure/shared/BoardAccessBuilder';
 
 describe('findUserBoards', () => {
   const user = UserBuilder.build();
@@ -18,9 +16,11 @@ describe('findUserBoards', () => {
     findBoardById: vi.fn(),
     findBoardsByIds: vi.fn(),
     findBoardsByUserId: vi.fn(),
+    create: vi.fn(),
   };
   const mockBoardAccessRepository: Mocked<BoardAccessRepository> = {
     findByUserId: vi.fn(),
+    create: vi.fn(),
   };
 
   afterEach(() => {
@@ -39,7 +39,9 @@ describe('findUserBoards', () => {
     it('should throw NotFoundException', async () => {
       mockUserRepository.findById.mockResolvedValue(null);
 
-      await expect(runningTheUsecase()).rejects.toThrowError(NotFoundException);
+      await expect(runningTheUsecase()).rejects.toThrow(
+        new NotFoundException(`user with id <${userId}> does not exist`),
+      );
     });
   });
 
