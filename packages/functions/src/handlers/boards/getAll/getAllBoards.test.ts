@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { APIGatewayProxyEventV2, Context } from 'aws-lambda';
 
-import { handler } from './board';
+import { handler } from './getAll';
 
-describe('board', () => {
+describe('getAll', () => {
   const context = {} as Context;
 
-  it('should return a board', async () => {
+  it('should return status code 200', async () => {
     const event = {} as unknown as APIGatewayProxyEventV2;
 
     const response = await handler(event, context);
