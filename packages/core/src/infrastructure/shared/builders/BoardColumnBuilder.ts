@@ -11,6 +11,7 @@ export class BoardColumnBuilder {
       color: boardColumn?.color ?? faker.internet.color(),
       position: boardColumn?.position ?? faker.datatype.number(),
       createdAt: boardColumn?.createdAt ?? faker.date.recent(),
+      tasks: boardColumn?.tasks ?? [],
     });
   }
 }

@@ -35,7 +35,7 @@ export const BoardContent = () => {
         <ScrollArea>
           <div className="px-4 py-4 lg:px-6 lg:py-6 flex flex-row gap-4">
             {selectedBoardColumns.map((column) => (
-              <TasksColumn key={`column-${column.name}`} heading={column.name} color={column.color}>
+              <TasksColumn key={`column-${column.name}`} heading={column.name} color="cyan">
                 {column.tasks.map(({ id, title }) => (
                   <TaskCard key={`task-card-${id}`} id={id} title={title} />
                 ))}

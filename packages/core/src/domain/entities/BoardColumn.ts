@@ -1,3 +1,5 @@
+import { Task } from './Task';
+
 export class BoardColumn {
   constructor(
     public boardId: string,
@@ -5,7 +7,8 @@ export class BoardColumn {
     public name: string,
     public color: string,
     public position: number,
-    public createdAt: string,
+    public createdAt: Date,
+    public tasks: Task[],
   ) {}
 
   static create(boardColumn: BoardColumn) {
@@ -16,6 +19,7 @@ export class BoardColumn {
       boardColumn.color,
       boardColumn.position,
       boardColumn.createdAt,
+      boardColumn.tasks,
     );
   }
 }

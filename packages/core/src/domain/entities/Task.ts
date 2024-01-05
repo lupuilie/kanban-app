@@ -9,7 +9,7 @@ export class Task {
     public status: string,
     public position: number,
     public subtasks: Subtask[],
-    public createdAt: string,
+    public createdAt: Date,
   ) {}
 
   static create(task: Task) {

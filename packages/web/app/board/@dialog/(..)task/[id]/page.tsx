@@ -12,13 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Subtask } from '@kanban-app/core/domain/entities';
 import { CheckedState } from '@radix-ui/react-checkbox';
@@ -28,22 +22,11 @@ type TaskDialogProps = {
   params: { id: string };
 };
 
-const initialSubtasks = [
-  new Subtask('id1', 'Research competitor pricing and business models', true, new Date()),
-  new Subtask('id2', 'Outline a business model that works for our solution', true, new Date()),
-  new Subtask(
-    'id3',
-    'Talk to potential customers about our proposed solution and ask for fair price expectancy',
-    false,
-    new Date(),
-  ),
-];
-
 export default function TaskDialog({ params: { id } }: TaskDialogProps) {
   const router = useRouter();
 
   const [status, setStatus] = useState('todo');
-  const [subtasks, setSubtasks] = useState<Subtask[]>(initialSubtasks);
+  const [subtasks, setSubtasks] = useState<Subtask[]>([]);
 
   const completedSubtasks = subtasks.filter((subtask) => subtask.isCompleted);
 
@@ -74,10 +57,7 @@ export default function TaskDialog({ params: { id } }: TaskDialogProps) {
               >
                 Edit Task
               </DropdownMenuItem>
-              <DropdownMenuItem
-                className="cursor-pointer"
-                onClick={() => router.replace(`/task/${id}/delete`)}
-              >
+              <DropdownMenuItem className="cursor-pointer" onClick={() => router.replace(`/task/${id}/delete`)}>
                 <span className="text-destructive">Delete Task</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -85,9 +65,8 @@ export default function TaskDialog({ params: { id } }: TaskDialogProps) {
         </DialogHeader>
         <div className="grid gap-4 pt-6">
           <p className="text-medium-grey">
-            We know what we&apos;re planning to build for version one. Now we need to finalise the
-            first pricing model we&apos;ll use. Keep iterating the subtasks until we have a coherent
-            proposition.
+            We know what we&apos;re planning to build for version one. Now we need to finalise the first pricing model
+            we&apos;ll use. Keep iterating the subtasks until we have a coherent proposition.
           </p>
           <div className="grid space-y-4">
             <Label>
@@ -142,9 +121,7 @@ export default function TaskDialog({ params: { id } }: TaskDialogProps) {
     const isCompleted = checked == 'indeterminate' ? false : checked;
 
     setSubtasks((subtasks) =>
-      subtasks.map((subtask) =>
-        subtask.id === changedSubtask.id ? { ...subtask, isCompleted } : subtask,
-      ),
+      subtasks.map((subtask) => (subtask.id === changedSubtask.id ? { ...subtask, isCompleted } : subtask)),
     );
   }
 }
