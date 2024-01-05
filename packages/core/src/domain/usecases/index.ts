@@ -1,1 +1,2 @@
-export * from './findUserBoards/findUserBoards';
+export * from './findUserBoards/findUserBoardsUsecase';
+export * from './createBoard/createBoardUsecase';

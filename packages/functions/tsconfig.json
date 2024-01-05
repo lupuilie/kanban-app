@@ -5,7 +5,8 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@kanban-app/core/*": ["../core/src/*"]
+      "@kanban-app/core/*": ["../core/src/*"],
+      "@kanban-app/functions/*": ["./src/*"]
     }
   }
 }

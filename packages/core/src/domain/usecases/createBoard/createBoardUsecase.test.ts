@@ -9,9 +9,9 @@ import {
 import { BoardAccessRepository, BoardRepository, UserRepository } from '@kanban-app/core/domain/repositories';
 import { BoardBuilder, UserBuilder } from '@kanban-app/core/infrastructure/shared/builders';
 import { BoardAccessRole } from '@kanban-app/core/domain/entities';
-import { createBoard } from './createBoard';
+import { createBoardUsecase } from './createBoardUsecase';
 
-describe('createBoard', () => {
+describe('createBoardUsecase', () => {
   const userId = 'userId';
   const boardName = 'board name';
   const user = UserBuilder.build({ id: userId });
@@ -36,7 +36,7 @@ describe('createBoard', () => {
     now: vi.fn(),
   };
 
-  const usecase = createBoard({
+  const usecase = createBoardUsecase({
     boardRepository: mockBoardRepository,
     userRepository: mockUserRepository,
     boardAccessRepository: mockBoardAccessRepository,

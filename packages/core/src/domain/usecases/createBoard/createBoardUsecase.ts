@@ -1,4 +1,4 @@
-import { Board, BoardAccess, BoardAccessRole } from '@kanban-app/core/domain/entities';
+import { Board, BoardAccessRole } from '@kanban-app/core/domain/entities';
 import {
   DateGenerator,
   IdentifierGenerator,
@@ -21,7 +21,7 @@ type Request = {
   name: string;
 };
 
-export const createBoard: UseCaseConstructor<Params, Request, Board> = (params) => {
+export const createBoardUsecase: UseCaseConstructor<Params, Request, Board> = (params) => {
   const { boardRepository, userRepository, boardAccessRepository, identifierGenerator, dateGenerator } = params;
 
   return async (request) => {

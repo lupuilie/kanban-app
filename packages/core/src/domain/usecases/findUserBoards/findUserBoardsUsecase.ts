@@ -12,7 +12,7 @@ type Request = {
   userId: string;
 };
 
-export const findUserBoards: UseCaseConstructor<Params, Request, Board[]> = (params) => {
+export const findUserBoardsUsecase: UseCaseConstructor<Params, Request, Board[]> = (params) => {
   const { boardRepository, boardAccessRepository, userRepository } = params;
 
   return async (request) => {

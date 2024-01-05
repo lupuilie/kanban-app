@@ -1,6 +1,6 @@
 import { vi, describe, it, expect, Mocked, afterEach } from 'vitest';
 
-import { findUserBoards } from './findUserBoards';
+import { findUserBoardsUsecase } from './findUserBoardsUsecase';
 import { NotFoundException } from '@kanban-app/core/domain/types';
 import { UserBuilder, BoardBuilder, BoardAccessBuilder } from '@kanban-app/core/infrastructure/shared/builders';
 import { BoardAccessRepository, BoardRepository, UserRepository } from '@kanban-app/core/domain/repositories';
@@ -27,7 +27,7 @@ describe('findUserBoards', () => {
     vi.resetAllMocks();
   });
 
-  const usecase = findUserBoards({
+  const usecase = findUserBoardsUsecase({
     userRepository: mockUserRepository,
     boardRepository: mockBoardRepository,
     boardAccessRepository: mockBoardAccessRepository,
